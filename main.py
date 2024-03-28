@@ -19,7 +19,3 @@ if __name__ == "__main__":
     server_thread.start()
     
     main()
-
-    # Run the main thread forever
-    while True:
-        time.sleep(1)
