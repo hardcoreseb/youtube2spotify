@@ -1,7 +1,6 @@
 from gui import AppGUI
 from spotify_api import run_http_server, refresh_token
 import threading
-import time
 
 def main():
     gui = AppGUI()
