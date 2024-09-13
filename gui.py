@@ -1,5 +1,5 @@
 from youtube_api import validate_youtube_link, extraxt_playlist_id, retrieve_playlist_elements
-from spotify_api import create_playlist
+from spotify_api import authenticate_spotify, create_playlist, filter_for_title, search_titles_in_spotify, add_tracks_to_playlist
 from PIL import Image
 
 import customtkinter
@@ -56,7 +56,14 @@ class AppGUI:
             playlist_id = extraxt_playlist_id(link)
             print(playlist_id)
             retrieve_playlist_elements(playlist_id)
-            create_playlist()
+            sp = authenticate_spotify()
+            playlist_info = create_playlist(sp)
+            spotify_playlist_id = playlist_info["id"]
+            titles = filter_for_title()
+            spotify_uris = search_titles_in_spotify(sp, titles)
+            print("Spotify URIs:", spotify_uris)
+            add_tracks_to_playlist(sp, spotify_uris, spotify_playlist_id)
+
             
             self.labelDone.pack(pady=8, padx=16)
             self.labelDone.configure(text="Done!", text_color="white")
