@@ -6,11 +6,16 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 import threading
 import time
 import json
+from dotenv import load_dotenv
+import os
 
-spotify_id = "1139834868"
-client_id = "ba32f9dbf1644ead9041791489e0425d"
-client_secret = "4f106a2de01d4b32ae37dd08345b1fd9"
-redirect_uri = "http://localhost:8888/callback"
+load_dotenv()
+
+spotify_id = os.getenv('SPOTIFY_ID')
+client_id = os.getenv('CLIENT_ID')
+client_secret = os.getenv('CLIENT_SECRET')
+redirect_uri = os.getenv('REDIRECT_URI')
+
 access_token = None
 sp_oauth = None
 callback_received = False

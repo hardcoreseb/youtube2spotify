@@ -1,3 +1,4 @@
+from dotenv import load_dotenv
 import os
 import re
 import json
@@ -8,7 +9,8 @@ import googleapiclient.errors
 
 scopes = ["https://www.googleapis.com/auth/youtube.readonly"]
 
-youtube_api_key = os.environ.get("YOUTUBE_API_KEY")
+load_dotenv()
+youtube_api_key = os.getenv('YOUTUBE_API_KEY')
 
 def validate_youtube_link(link):
     youtube_link_pattern = r"^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube(-nocookie)?\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$"
