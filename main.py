@@ -7,11 +7,6 @@ def main():
     gui.run()
 
 if __name__ == "__main__":
-    # From old spotify api
-    # refresh_token_thread = threading.Thread(target=refresh_token)
-    # refresh_token_thread.daemon = True  # Daemonize the thread
-    # refresh_token_thread.start()
-
     # Start the HTTP server for handling Spotify authentication
     server_thread = threading.Thread(target=run_http_server)
     server_thread.daemon = True

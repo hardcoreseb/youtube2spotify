@@ -77,9 +77,7 @@ class AppGUI(customtkinter.CTk):
 
     def check(self, event = None):
         link = self.entry.get()
-        print("Hello")
         if validate_youtube_link(link):
-            print("Working so far")
             playlist_id = extraxt_playlist_id(link)
             print(playlist_id)
             retrieve_playlist_elements(playlist_id)
@@ -98,15 +96,11 @@ class AppGUI(customtkinter.CTk):
             self.labelDone.pack(pady=8, padx=16)
             self.labelDone.configure(text="Please insert a correct link (FULL YouTube-Playlist link)!", text_color="red")
 
-    def env(self, event = None):
-        print('Clicked')
-
     def open_toplevel(self):
         if self.toplevel_window is None or not self.toplevel_window.winfo_exists():
             self.toplevel_window = TopLevelWindow(self)  # create window if its None or destroyed
         else:
             self.toplevel_window.focus()  # if window exists focus it
-            self.root.quit()
 
     def run(self):
         self.root.mainloop()
@@ -155,25 +149,6 @@ class TopLevelWindow(customtkinter.CTkToplevel):
         self.submit_button.pack(pady=20)
 
 
-        # Create and pack entry widgets with initial text
-        # self.create_entry('SPOTIFY_ID', self.env_vars['SPOTIFY_ID'], self.placeholder['SPOTIFY_ID'])
-        # self.create_entry('CLIENT_ID', self.env_vars['CLIENT_ID'], self.placeholder['CLIENT_ID'])
-        # self.create_entry('CLIENT_SECRET', self.env_vars['CLIENT_SECRET'], self.placeholder['CLIENT_SECRET'])
-        # self.create_entry('REDIRECT_URI', self.env_vars['REDIRECT_URI'], self.placeholder['REDIRECT_URI'])
-        # self.create_entry('YOUTUBE_API_KEY', self.env_vars['YOUTUBE_API_KEY'], self.placeholder['YOUTUBE_API_KEY'])
-
-    # def create_entry(self, label_text, initial_text, placeholder_text):
-    #     frame = customtkinter.CTkFrame(self)
-    #     frame.pack(pady=5, padx=20, fill="x")
-
-    #     label = customtkinter.CTkLabel(frame, text=label_text)
-    #     label.pack(side="left", padx=(10, 10))
-
-    #     entry = customtkinter.CTkEntry(frame, width=300, height=40, placeholder_text=placeholder_text)
-    #     entry.pack(side="right", fill="x", expand=False)
-    #     entry.insert(0, initial_text)  # Set the initial text
-    #     entry.bind("<Return>", self.update(entry))
-
     def load_env_vars(self):
         load_dotenv()
         for var in self.env_vars:
@@ -189,7 +164,7 @@ class TopLevelWindow(customtkinter.CTkToplevel):
 class ToastNotification(customtkinter.CTkToplevel):
     def __init__(self, parent, message):
         super().__init__(master=parent)
-        self.geometry("400x100")  # Adjust the size as needed
+        self.geometry("400x100")
         self.overrideredirect(True)  # Remove window borders and title bar
         self.attributes("-topmost", True)  # Make sure it's on top of other windows
 

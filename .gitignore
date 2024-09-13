@@ -5,3 +5,4 @@ __pycache__/
 .cache
 .env
 .env.env
+old_spotify_api.py

@@ -49,7 +49,6 @@ def create_playlist(sp):
             description="Created by the YouTube2Spotify App."
         )
         print("Playlist created successfully:", results)
-        print("Spotify ID for the playlist", results["id"])
         return results
     except Exception as e:
         print("Error creating playlist:", e)
